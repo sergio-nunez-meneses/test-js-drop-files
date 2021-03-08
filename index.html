@@ -6,14 +6,16 @@
     <title>Drop Files</title>
   </head>
   <body>
-    <main class="upload-container">
-      <div id="clickToUpload" class="input-container">
-        <input type="file" name="file">
+    <main class="main-container">
+      <div class="upload-container">
+        <div id="clickToUpload" class="input-container">
+          <input type="file" name="file">
+        </div>
+        <div id="dropToUpload" class="input-container">
+          <p class="drop-text">Drag and drop a file here...</p>
+        </div>
       </div>
-      <div id="dropToUpload" class="input-container">
-        <p class="drop-text">Drag and drop a file here...</p>
-      </div>
-      <input type="button" name="submit" value="Submit">
+      <input class="submit-button" type="button" name="submit" value="Submit">
     </main>
 
     <script src="script.js"></script>

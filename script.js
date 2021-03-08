@@ -14,3 +14,13 @@ function getBy(attribute, value) {
         return document.querySelector(value);
     }
 }
+
+drop.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    console.log('dragging file over...');
+});
+drop.addEventListener('drop', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    alert('file dropped...');
+});

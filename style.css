@@ -1,5 +1,13 @@
-.upload-container, .input-container {
+.main-container, .upload-container, .input-container {
     display: flex;
+}
+
+.main-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-container, .input-container {
     justify-content: center;
 }
 
@@ -13,4 +21,8 @@
 
 .drop-text {
     color: chocolate;
+}
+
+.submit-button {
+    margin: 1rem 0;
 }
