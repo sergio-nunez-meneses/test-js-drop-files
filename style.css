@@ -1,0 +1,16 @@
+.upload-container, .input-container {
+    display: flex;
+    justify-content: center;
+}
+
+.input-container {
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    margin: auto 1rem;
+    border: 1px solid #008b8b;
+}
+
+.drop-text {
+    color: chocolate;
+}
