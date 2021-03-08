@@ -4,25 +4,35 @@
 
 .main-container {
     flex-direction: column;
+}
+
+.main-container, .input-container {
     align-items: center;
 }
 
 .upload-container, .input-container {
-    justify-content: center;
+    justify-content: space-around;
+    padding: 1rem;
 }
 
 .input-container {
-    align-items: center;
-    width: 200px;
+    align-content: center;
     height: 200px;
-    margin: auto 1rem;
+    margin: 0 0.75rem;
+    padding: 2rem;
     border: 1px solid #008b8b;
 }
 
+.input-container:nth-of-type(2) {
+    flex-grow: 2;
+}
+
 .drop-text {
-    color: chocolate;
+    color: grey;
 }
 
 .submit-button {
-    margin: 1rem 0;
+    width: 45%;
+    margin: auto;
+    padding: 0.5rem;
 }
