@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.main-container, .select-files-container, .select-button, .submit-button {
+.main-container, .select-files-container, .submit-button {
     width: 100%;
 }
 
@@ -23,12 +23,9 @@
     color: #808080;
 }
 
-.select-button, .submit-button {
-    padding: 0.5rem;
-}
-
 .submit-button {
     margin: 1rem 0;
+    padding: 0.5rem;
 }
 
 .hidden {

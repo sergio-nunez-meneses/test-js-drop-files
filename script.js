@@ -1,5 +1,5 @@
 var uploadContainer = getBy('class', 'upload-container')[0],
-    selectBtn       = getBy('class', 'select-button')[0],
+    selectBtn       = getBy('id', 'selectButton'),
     dropText        = getBy('class', 'drop-text'),
     submitBtn       = getBy('name', 'submit'),
     draggedOver     = false,
@@ -24,11 +24,13 @@ function getBy(attribute, value) {
 }
 
 function showHideElements(element) {
-	if (element.classList.contains('hidden')) {
-		element.classList.remove('hidden')
+	element = element.classList;
+
+	if (element.contains('hidden')) {
+		element.remove('hidden')
 	}
 	else {
-		element.classList.add('hidden');
+		element.add('hidden');
 	}
 }
 
@@ -36,13 +38,27 @@ function appendData(attachmentType, files) {
 	data = new FormData();
 	data.append(attachmentType + '_files', files);
 
-	showFileName(files.name);
+	submitView(files.name);
 }
 
-function showFileName(filename) {
+function submitView(filename) {
 	dropText[0].innerHTML = filename;
 	showHideElements(dropText[1]);
 	showHideElements(selectBtn);
+}
+
+function responseView(response) {
+	getBy('id', 'responseContainer').innerHTML = response;
+	showHideElements(submitBtn);
+}
+
+function initView() {
+	dropText[0].innerHTML = 'Drop your files here...';
+	showHideElements(dropText[1]);
+	showHideElements(selectBtn);
+	showHideElements(submitBtn);
+
+	getBy('id', 'responseContainer').innerHTML = '';
 }
 
 function ajax(data) {
@@ -57,8 +73,7 @@ function ajax(data) {
 function response() {
 	console.log(this.responseText);
 
-	getBy('id', 'responseContainer').innerHTML = this.responseText;
-	showHideElements(submitBtn);
+	responseView(this.responseText);
 }
 
 function dropHandler(e) {
