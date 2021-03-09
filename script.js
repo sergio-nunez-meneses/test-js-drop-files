@@ -1,9 +1,9 @@
 var uploadContainer = getBy('class', 'upload-container')[0],
-    dropText        = getBy('class', 'drop-text'),
     selectBtn       = getBy('class', 'select-button')[0],
-    submitBtn = getBy('name', 'submit'),
-		draggedOver = false,
-		data;
+    dropText        = getBy('class', 'drop-text'),
+    submitBtn       = getBy('name', 'submit'),
+    draggedOver     = false,
+    data;
 
 function getBy(attribute, value) {
 	if (attribute === 'tag') {
@@ -34,6 +34,8 @@ function ajax(data) {
 
 function response() {
 	console.log(this.responseText);
+
+	getBy('id', 'responseContainer').innerHTML = this.responseText;
 }
 
 function dropHandler(e) {
@@ -61,6 +63,20 @@ uploadContainer.addEventListener('drop', (e) => {
 
 	dropHandler(e);
 	draggedOver = false;
+});
+
+selectBtn.addEventListener('click', () => {
+	var selectFiles = getBy('name', 'select-files');
+
+	selectFiles.click();
+	selectFiles.onchange  = (e) => {
+		data = new FormData();
+		data.append('selected_files', selectFiles.files[0]);
+
+		dropText[0].innerHTML = selectFiles.files[0].name;
+		dropText[1].classList.add('hidden');
+		selectBtn.classList.add('hidden');
+	};
 });
 
 submitBtn.addEventListener('click', () => {

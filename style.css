@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.main-container, .select-button-container, .select-button, .submit-button {
+.main-container, .select-files-container, .select-button, .submit-button {
     width: 100%;
 }
 

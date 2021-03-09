@@ -11,11 +11,12 @@
 	<div class="upload-container">
 		<p class="drop-text">Drop your files here...</p>
 		<p class="drop-text">or...</p>
-		<p class="select-button-container">
+		<p class="select-files-container">
 			<input type="button" class="select-button" value="select them here...">
+			<input type="file" class="hidden" name="select-files">
 		</p>
-		<input type="file" class="hidden" name="files">
 		<input type="button" class="submit-button" name="submit" value="and send them!">
+		<div id="responseContainer"></div>
 	</div>
 </main>
 
