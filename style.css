@@ -1,38 +1,36 @@
-.main-container, .upload-container, .input-container {
+.main-container, .upload-container {
     display: flex;
-}
-
-.main-container {
     flex-direction: column;
-}
-
-.main-container, .input-container {
     align-items: center;
 }
 
-.upload-container, .input-container {
-    justify-content: space-around;
-    padding: 1rem;
+.main-container, .select-button-container, .select-button, .submit-button {
+    width: 100%;
 }
 
-.input-container {
-    align-content: center;
-    height: 200px;
-    margin: 0 0.75rem;
+.main-container {
+    height: auto;
+}
+
+.upload-container {
+    width: 480px;
+    height: auto;
     padding: 2rem;
-    border: 1px solid #008b8b;
-}
-
-.input-container:nth-of-type(2) {
-    flex-grow: 2;
+    border: 0.25rem dashed #808080;
 }
 
 .drop-text {
-    color: grey;
+    color: #808080;
+}
+
+.select-button, .submit-button {
+    padding: 0.5rem;
 }
 
 .submit-button {
-    width: 45%;
-    margin: auto;
-    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+.hidden {
+    display: none;
 }

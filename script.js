@@ -1,9 +1,9 @@
-var click       = getBy('id', 'clickToUpload'),
-    drop        = getBy('id', 'dropToUpload'),
-    dropText    = getBy('class', 'drop-text')[0],
-    submitBtn   = getBy('name', 'submit'),
-    draggedOver = false,
-    data;
+var uploadContainer = getBy('class', 'upload-container')[0],
+    dropText        = getBy('class', 'drop-text'),
+    selectBtn       = getBy('class', 'select-button')[0],
+    submitBtn = getBy('name', 'submit'),
+		draggedOver = false,
+		data;
 
 function getBy(attribute, value) {
 	if (attribute === 'tag') {
@@ -42,10 +42,12 @@ function dropHandler(e) {
 	data = new FormData();
 	data.append('dragged_files', e.dataTransfer.files[0]);
 
-	dropText.innerHTML = e.dataTransfer.files[0].name;
+	dropText[0].innerHTML = e.dataTransfer.files[0].name;
+	dropText[1].classList.add('hidden');
+	selectBtn.classList.add('hidden');
 }
 
-drop.addEventListener('dragover', (e) => {
+uploadContainer.addEventListener('dragover', (e) => {
 	e.preventDefault();
 
 	if (!draggedOver) {
@@ -54,7 +56,7 @@ drop.addEventListener('dragover', (e) => {
 	}
 });
 
-drop.addEventListener('drop', (e) => {
+uploadContainer.addEventListener('drop', (e) => {
 	e.preventDefault();
 
 	dropHandler(e);
