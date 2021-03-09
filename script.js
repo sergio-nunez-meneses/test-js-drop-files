@@ -1,7 +1,9 @@
 var click       = getBy('id', 'clickToUpload'),
     drop        = getBy('id', 'dropToUpload'),
-    dropText = getBy('class', 'drop-text')[0],
-    draggedOver = false;
+    dropText    = getBy('class', 'drop-text')[0],
+    submitBtn   = getBy('name', 'submit'),
+    draggedOver = false,
+    data;
 
 function getBy(attribute, value) {
 	if (attribute === 'tag') {
@@ -21,8 +23,24 @@ function getBy(attribute, value) {
 	}
 }
 
+function ajax(data) {
+	console.log(data);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'files_infos.php');
+	xhr.send(data);
+	xhr.onload = response;
+}
+
+function response() {
+	console.log(this.responseText);
+}
+
 function dropHandler(e) {
 	console.log(e.dataTransfer);
+
+	data = new FormData();
+	data.append('dragged_files', e.dataTransfer.files[0]);
 
 	dropText.innerHTML = e.dataTransfer.files[0].name;
 }
@@ -41,4 +59,8 @@ drop.addEventListener('drop', (e) => {
 
 	dropHandler(e);
 	draggedOver = false;
+});
+
+submitBtn.addEventListener('click', () => {
+	ajax(data);
 });
