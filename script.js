@@ -23,10 +23,32 @@ function getBy(attribute, value) {
 	}
 }
 
+function showHideElements(element) {
+	if (element.classList.contains('hidden')) {
+		element.classList.remove('hidden')
+	}
+	else {
+		element.classList.add('hidden');
+	}
+}
+
+function appendData(attachmentType, files) {
+	data = new FormData();
+	data.append(attachmentType + '_files', files);
+
+	showFileName(files.name);
+}
+
+function showFileName(filename) {
+	dropText[0].innerHTML = filename;
+	showHideElements(dropText[1]);
+	showHideElements(selectBtn);
+}
+
 function ajax(data) {
 	console.log(data);
 
-	var xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'files_infos.php');
 	xhr.send(data);
 	xhr.onload = response;
@@ -36,17 +58,11 @@ function response() {
 	console.log(this.responseText);
 
 	getBy('id', 'responseContainer').innerHTML = this.responseText;
+	showHideElements(submitBtn);
 }
 
 function dropHandler(e) {
-	console.log(e.dataTransfer);
-
-	data = new FormData();
-	data.append('dragged_files', e.dataTransfer.files[0]);
-
-	dropText[0].innerHTML = e.dataTransfer.files[0].name;
-	dropText[1].classList.add('hidden');
-	selectBtn.classList.add('hidden');
+	appendData('dragged', e.dataTransfer.files[0]);
 }
 
 uploadContainer.addEventListener('dragover', (e) => {
@@ -66,16 +82,11 @@ uploadContainer.addEventListener('drop', (e) => {
 });
 
 selectBtn.addEventListener('click', () => {
-	var selectFiles = getBy('name', 'select-files');
+	let selectFiles = getBy('name', 'select-files');
 
 	selectFiles.click();
-	selectFiles.onchange  = (e) => {
-		data = new FormData();
-		data.append('selected_files', selectFiles.files[0]);
-
-		dropText[0].innerHTML = selectFiles.files[0].name;
-		dropText[1].classList.add('hidden');
-		selectBtn.classList.add('hidden');
+	selectFiles.onchange = () => {
+		appendData('selected', selectFiles.files[0]);
 	};
 });
 
