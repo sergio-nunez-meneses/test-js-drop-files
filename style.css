@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    font-family: 'helvetica', 'Arial Narrow';
+}
+
 .main-container, .upload-container {
     display: flex;
     flex-direction: column;
@@ -8,15 +13,27 @@
     width: 100%;
 }
 
-.main-container {
+.main-container, .upload-container {
     height: auto;
+}
+
+.submit-button, .upload-container {
+    margin: 1rem 0;
 }
 
 .upload-container {
     width: 480px;
-    height: auto;
+    border: 0.125rem dashed #eeeeee;
+    border-radius: 2px;
     padding: 2rem;
-    border: 0.25rem dashed #808080;
+    background-color: #fafafa;
+    color: #bdbdbd;
+    transition: border .24s ease-in-out;
+}
+
+.upload-container:hover {
+    border-color: #2196f3;
+    transition: border-color .24s ease-in-out;
 }
 
 .drop-text {

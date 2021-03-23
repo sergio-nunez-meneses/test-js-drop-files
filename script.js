@@ -1,7 +1,7 @@
 var uploadContainer = getBy('class', 'upload-container')[0],
     selectBtn       = getBy('id', 'selectButton'),
     dropText        = getBy('class', 'drop-text'),
-    submitBtn       = getBy('name', 'submit'),
+    submitBtn       = getBy('name', 'submit')[0],
     draggedOver     = false,
     data;
 
@@ -13,7 +13,7 @@ function getBy(attribute, value) {
 		return document.getElementById(value);
 	}
 	else if (attribute === 'name') {
-		return document.getElementsByName(value)[0];
+		return document.getElementsByName(value);
 	}
 	else if (attribute === 'class') {
 		return document.getElementsByClassName(value);
@@ -41,8 +41,18 @@ function appendData(attachmentType, files) {
 	submitView(files.name);
 }
 
+function initView() {
+	dropText[0].innerHTML = 'Drop your files here...';
+
+	showHideElements(dropText[1]);
+	showHideElements(selectBtn);
+	showHideElements(submitBtn);
+	getBy('id', 'responseContainer').innerHTML = '';
+}
+
 function submitView(filename) {
 	dropText[0].innerHTML = filename;
+
 	showHideElements(dropText[1]);
 	showHideElements(selectBtn);
 }
@@ -50,15 +60,6 @@ function submitView(filename) {
 function responseView(response) {
 	getBy('id', 'responseContainer').innerHTML = response;
 	showHideElements(submitBtn);
-}
-
-function initView() {
-	dropText[0].innerHTML = 'Drop your files here...';
-	showHideElements(dropText[1]);
-	showHideElements(selectBtn);
-	showHideElements(submitBtn);
-
-	getBy('id', 'responseContainer').innerHTML = '';
 }
 
 function ajax(data) {
@@ -97,7 +98,7 @@ uploadContainer.addEventListener('drop', (e) => {
 });
 
 selectBtn.addEventListener('click', () => {
-	let selectFiles = getBy('name', 'select-files');
+	let selectFiles = getBy('name', 'select-files')[0];
 
 	selectFiles.click();
 	selectFiles.onchange = () => {
